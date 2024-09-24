@@ -1,13 +1,7 @@
-function Create()
-	local str = "666"
+require("Math.InertialElement")
 
-	local context = {}
-	function context.Log()
-		print(str)
-	end
-
-	return context
+local inertial_element = Math.InertialElement.New(0.05, 0.010, 0.1)
+for i = 0, 100 do
+	Math.InertialElement.Input(inertial_element, 5)
+	print(Math.InertialElement.CurrentOutput(inertial_element))
 end
-
-local o = Create()
-o.Log()
