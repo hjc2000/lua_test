@@ -1,27 +1,13 @@
-function Inject()
-	if (Test == nil) then
-		Test = {}
-	end
+function Create()
+	local str = "666"
 
-	local str = "6"
-	function Test.Log()
+	local context = {}
+	function context.Log()
 		print(str)
 	end
+
+	return context
 end
 
-Inject()
-Test.Log()
-
-function Inject()
-	if (Test == nil) then
-		Test = {}
-	end
-
-	local str = "7"
-	function Test.Log()
-		print(str)
-	end
-end
-
-Inject()
-Test.Log()
+local o = Create()
+o.Log()
