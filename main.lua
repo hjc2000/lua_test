@@ -9,19 +9,19 @@ function Inject()
 	end
 end
 
-function Inject1()
-	if (Test1 == nil) then
-		Test1 = {}
+Inject()
+Test.Log()
+
+function Inject()
+	if (Test == nil) then
+		Test = {}
 	end
 
 	local str = "7"
-	function Test1.Log()
+	function Test.Log()
 		print(str)
 	end
 end
 
 Inject()
 Test.Log()
-
-Inject1()
-Test1.Log()
