@@ -27,4 +27,24 @@ function Ticker.Test()
 	end
 end
 
-Ticker.Test()
+-- Ticker.Test()
+
+if (true) then
+	local str = "666"
+
+	function Log1()
+		print(str)
+	end
+end
+
+
+if (true) then
+	local str = "777"
+
+	function Log2()
+		print(str)
+	end
+end
+
+Log1()
+Log2()
