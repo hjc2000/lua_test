@@ -1,7 +1,7 @@
 -- 打印_ENV的内容
-function print_env(env)
+local function print_env(env)
 	for key, value in pairs(env) do
-		print(key .. ": " .. tostring(value))
+		print(key)
 	end
 end
 
