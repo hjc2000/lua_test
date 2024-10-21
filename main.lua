@@ -1,3 +1,9 @@
+local function TestSpeedMode()
+	Servo.ChangeToSpeedMode()
+	Servo.Param.SetBothTorqueLimit(4)
+	Servo.SetSpeedAndRun(100)
+end
+
 --- 初始化
 if true then
 	Servo.Configure()
