@@ -8,7 +8,7 @@ if true then
 	Servo.Stop()
 	Servo.PresetPosition()
 
-	StaticFrictionDetector.Detecte()
+	Detector.StaticFrictionDetector.Detecte()
 end
 
 local _max_time = 0
