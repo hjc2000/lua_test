@@ -16,6 +16,14 @@ if true then
 		Servo.SetSpeedAndRun(100)
 	end
 
+	local function Stop()
+		Servo.Param.SetBothTorqueLimit(100)
+		Servo.Stop()
+		while math.abs(Servo.Feedback.Speed()) > 5 do
+			-- 等待直到伺服停止
+		end
+	end
+
 
 	--- 使用二分法，首先指定转矩限制值的区间左右端点，在区间内寻找静摩擦对应的转矩
 	local _left_torque = 0
@@ -29,8 +37,27 @@ if true then
 
 		while true do
 			local current_torque = (_left_torque + _right_torque) // 2
+			if (_left_torque >= _right_torque) then
+				_detecte_result = current_torque
+				print("检测结束 current_torque <= _left_torque，静摩擦： ", _detecte_result)
+				return
+			end
+
+			if (current_torque <= _left_torque) then
+				_detecte_result = current_torque
+				print("检测结束 current_torque <= _left_torque，静摩擦： ", _detecte_result)
+				return
+			end
+
+			if (current_torque >= _right_torque) then
+				_detecte_result = current_torque
+				print("检测结束 current_torque <= _left_torque，静摩擦： ", _detecte_result)
+				return
+			end
+
 			RunWithTorque(current_torque)
-			Servo.Timer.Delay(100)
+			Servo.Timer.Delay(1000)
+
 			if (Servo.Feedback.Speed() > 10) then
 				-- _current_torque 已经让伺服转起来了，说明大于静摩擦
 				_right_torque = current_torque
@@ -39,23 +66,13 @@ if true then
 				_left_torque = current_torque
 			end
 
-			if (_left_torque >= _right_torque) then
-				print("检测结束")
-				_detecte_result = current_torque
-				return
-			end
-
-			if (current_torque <= _left_torque) then
-				print("检测结束")
-				_detecte_result = current_torque
-				return
-			end
-
-			if (current_torque >= _right_torque) then
-				print("检测结束")
-				_detecte_result = current_torque
-				return
-			end
+			Stop()
 		end
+	end
+
+	--- 检测结果
+	--- @return integer
+	function StaticFrictionDetector.Result()
+		return _detecte_result
 	end
 end

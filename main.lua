@@ -1,18 +1,3 @@
--- 测试定位模式
-local function TestPositionMode()
-	Servo.ChangeToPositionMode()
-	Servo.Param.SetSpeedLimit(100)
-	Servo.Param.SetBothTorqueLimit(100)
-	Servo.SetAbsoluteCircleCountAndRun(10)
-end
-
-local function TestSpeedMode()
-	Servo.ChangeToSpeedMode()
-	Servo.Param.SetBothTorqueLimit(10)
-	Servo.SetSpeedAndRun(100)
-end
-
-
 --- 初始化
 if true then
 	Servo.Configure()
@@ -23,7 +8,7 @@ if true then
 	Servo.Stop()
 	Servo.PresetPosition()
 
-	TestSpeedMode()
+	StaticFrictionDetector.Detecte()
 end
 
 local _max_time = 0
