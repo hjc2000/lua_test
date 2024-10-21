@@ -4,6 +4,12 @@ local function TestSpeedMode()
 	Servo.SetSpeedAndRun(100)
 end
 
+local function TestTorqueMode()
+	Servo.ChangeToTorqueMode()
+	Servo.Param.SetSpeedLimitInTorqueMode(300)
+	Servo.SetTorqueAndRun(10)
+end
+
 --- 初始化
 if true then
 	Servo.Configure()
@@ -15,6 +21,7 @@ if true then
 	Servo.PresetPosition()
 
 	Detector.StaticFrictionDetector.Detecte()
+	-- TestTorqueMode()
 end
 
 local _max_time = 0
