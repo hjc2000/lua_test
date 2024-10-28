@@ -46,7 +46,7 @@ if true then
 	Servo.Stop()
 	Servo.PresetPosition()
 
-	Detector.StaticFrictionDetector.Detecte()
+	Detector.StaticFrictionDetector.Detect()
 	-- TestTorqueMode()
 	-- TestFreeStopping()
 end
