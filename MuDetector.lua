@@ -10,8 +10,13 @@ if true then
 		Detector.MuDetector = {}
 	end
 
+	-- 光轴时的最大静摩擦
 	local _f_max = 0
+
+	-- 吊着重物时的最大静摩擦
 	local _f_max1 = 0
+
+	-- 摩擦系数
 	local _mu = 0
 
 	--- 获取摩擦系数。
