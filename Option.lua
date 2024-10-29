@@ -25,7 +25,7 @@ if true then
 	--- 电机额定转矩。单位：N·m.
 	--- @return number
 	function Option.RatedTorque()
-		return 2.7
+		return DF(3)
 	end
 
 	--- 重物重量导致的施加到电机轴上的转矩。单位：额定转矩的百分比。
