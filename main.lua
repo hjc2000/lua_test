@@ -6,7 +6,7 @@ end
 
 local function TestTorqueMode()
 	Servo.ChangeToTorqueMode()
-	Servo.Param.SetSpeedLimitInTorqueMode(300)
+	Servo.Param.SetSpeedLimitInTorqueMode(100)
 	Servo.SetTorqueAndRun(10)
 end
 
