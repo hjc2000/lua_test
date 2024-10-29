@@ -20,17 +20,18 @@ if true then
 	local _mu = 0
 
 	--- 获取摩擦系数。
-	--- 要执行完检测后本属性才有效。
+	--- 要执行完检测步骤后本属性才有效。
 	--- @return number
 	function Detector.MuDetector.Mu()
 		return _mu
 	end
 
-	--- 重物重量导致的施加到电机轴上的转矩。单位：额定转矩的百分比。
-	--- 调用最大静摩擦测试程序测试得到最大静摩擦后，需要将得到的值减去本属性，得到的才是真实的最大静摩擦。
+	--- 计算当前的最大静摩擦。
+	--- 计算依赖 Detector.MuDetector.Mu() ，所以要执行完检测步骤后才能计算。
+	--- @param weight number 当前轴上压着的重物重量
 	--- @return number
-	local function WeightTorque()
-		return 100 * Option.Weight() * Option.WireSpoolRadius() / (Option.ReductionRatio() * Option.RatedTorque())
+	function Detector.MuDetector.CalculateMaxStaticFriction(weight)
+		return _f_max + Detector.MuDetector.Mu() * weight
 	end
 
 	--- 执行步骤 1 检测。
@@ -45,7 +46,7 @@ if true then
 		print("步骤 2 启动，检测吊着重物状态下的最大静摩擦。")
 		Detector.StaticFrictionDetector.Detect()
 		_f_max1 = Detector.StaticFrictionDetector.Result()
-		_f_max1 = _f_max1 - WeightTorque()
+		_f_max1 = _f_max1 - Option.WeightTorque()
 		_mu = (_f_max1 - _f_max) / Option.Weight()
 		print("检测完毕，摩擦系数为：", _mu)
 	end

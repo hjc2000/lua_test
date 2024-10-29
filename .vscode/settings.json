@@ -15,7 +15,8 @@
 		"AXIS_MOVEABS",
 		"SRV_EOUT",
 		"AXIS_CANCEL",
-		"TIM_VALUE"
+		"TIM_VALUE",
+		"DF"
 	],
 	"Lua.workspace.library": [
 		"${env:lua_libs}",
