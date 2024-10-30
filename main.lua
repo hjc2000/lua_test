@@ -46,6 +46,7 @@ if true then
 	Servo.Stop()
 	Servo.PresetPosition()
 
+	print("开始检测摩擦力")
 	Detector.StaticFrictionDetector.Detect()
 	-- TestTorqueMode()
 	-- TestFreeStopping()
