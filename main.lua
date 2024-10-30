@@ -36,8 +36,16 @@ local function TestFreeStopping()
 	Servo.Param.SetBothTorqueLimit(0)
 end
 
+local function TestPositionMode()
+	Servo.ChangeToPositionMode()
+	Servo.Param.SetSpeedLimit(100)
+	Servo.Param.SetBothTorqueLimit(100)
+	Servo.SetAbsoluteCircleCountAndRun(10)
+end
+
 --- 初始化
 if true then
+	-- Servo.Core.Disable()
 	Servo.Configure()
 
 	-- 启动定时
@@ -48,7 +56,9 @@ if true then
 
 	print("开始检测摩擦力")
 	Detector.StaticFrictionDetector.Detect()
+	-- TestPositionMode()
 	-- TestTorqueMode()
+	-- TestSpeedMode()
 	-- TestFreeStopping()
 end
 
